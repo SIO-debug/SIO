@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SIO · Servicios Integrales Olmedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B3A6B; --navy-deep:#072646; --cyan:#1EA7DE; --sky:#E6F4FB; --paper:#FFFFFF; --ink:#12304F; --muted:#4B6580;
+  --bg:var(--paper); --surface:var(--sky); --text:var(--ink); --head:var(--navy);
+  --display:'Baloo 2','Trebuchet MS',sans-serif; --body:'Nunito Sans','Segoe UI',Arial,sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#061C33;--surface:#0A2B4D;--text:#DCEBF7;--head:#8FD3F4;--muted:#9DB6CC}}
+:root[data-theme="dark"]{--bg:#061C33;--surface:#0A2B4D;--text:#DCEBF7;--head:#8FD3F4;--muted:#9DB6CC}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.6 var(--body)}
+h1,h2,h3{font-family:var(--display);color:var(--head);line-height:1.1;margin:0}
+h1{font-size:clamp(2.4rem,9vw,4.6rem);font-weight:800}
+h2{font-size:clamp(1.8rem,5vw,2.6rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:600}
+p{margin:0;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+section{padding:4.5rem 0}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:var(--navy-deep);color:#fff}
+.bar{display:flex;align-items:center;justify-content:space-between;min-height:64px}
+.brand{font-family:var(--display);font-weight:800;font-size:1.5rem;text-decoration:none;display:flex;gap:.6rem;align-items:center}
+.brand i{width:12px;height:28px;background:var(--cyan);border-radius:3px;display:block}
+.brand small{font:600 .8rem var(--body);opacity:.8;display:none}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.6rem}
+nav a{text-decoration:none;font-weight:700}
+nav a:hover{color:var(--cyan)}
+.menu-btn{display:none;background:none;border:2px solid #fff;color:#fff;border-radius:8px;padding:.45rem .8rem;font:700 .95rem var(--body);cursor:pointer}
+@media(max-width:760px){
+  .menu-btn{display:block}
+  nav{position:absolute;left:0;right:0;top:100%;background:var(--navy-deep);display:none;padding:1rem 1.25rem 1.5rem}
+  nav.open{display:block}
+  nav ul{flex-direction:column;gap:1rem;font-size:1.15rem}
+}
+@media(min-width:900px){.brand small{display:inline}}
+
+/* Hero: franja de rodillo */
+.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:4rem 0 5rem}
+.hero h1{color:#fff;max-width:11ch}
+.hero .stroke{position:absolute;right:-8%;top:12%;width:62%;height:46%;background:var(--cyan);border-radius:14px;transform:rotate(-7deg);opacity:.95}
+.hero .stroke::after{content:"";position:absolute;left:-6%;bottom:-40%;width:112%;height:34%;background:var(--navy-deep);border-radius:12px;opacity:.55}
+.hero .in{position:relative;display:grid;gap:1.5rem;min-height:340px;align-content:center}
+.hero .lead{font-size:1.2rem;max-width:34ch;text-shadow:0 1px 8px rgba(7,38,70,.6)}
+.hero h1,.hero .lead,.hero .cta{position:relative;z-index:1}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;padding:.9rem 1.5rem;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--body);font-size:1rem}
+.btn-main{background:#fff;color:var(--navy)}
+.btn-main:hover{background:var(--sky)}
+.btn-line{border-color:#fff;color:#fff}
+.btn-line:hover{background:rgba(255,255,255,.14)}
+@media(max-width:600px){.hero .stroke{width:90%;top:6%;height:34%}.btn{flex:1 1 100%;text-align:center}}
+
+/* Servicios */
+.head{display:grid;gap:.8rem;margin-bottom:2.2rem}
+.head p{color:var(--muted)}
+.services{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.svc{background:var(--surface);border-left:8px solid var(--cyan);padding:1.6rem 1.5rem;border-radius:4px 16px 16px 4px;display:grid;gap:.7rem}
+.svc:nth-child(2){border-left-color:var(--navy)}
+.svc ul{margin:.3rem 0 0;padding-left:1.1rem;color:var(--muted)}
+
+/* Proceso */
+.alt{background:var(--surface)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));counter-reset:s}
+.steps li{counter-increment:s;background:var(--bg);padding:1.3rem;border-radius:14px;display:grid;gap:.4rem}
+.steps li::before{content:counter(s);font:800 1.1rem var(--display);width:2.1rem;height:2.1rem;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.steps b{font-family:var(--display);font-size:1.15rem;color:var(--head)}
+
+/* Por qué */
+.why{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start}
+.why dl{margin:0;display:grid;gap:1.1rem}
+.why dt{font:600 1.2rem var(--display);color:var(--head)}
+.why dd{margin:0;color:var(--muted)}
+
+/* Contacto */
+.contact{background:var(--navy-deep);color:#fff}
+.contact h2{color:#fff}
+.cgrid{display:grid;gap:2.2rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+form{display:grid;gap:1rem;background:#fff;color:var(--ink);padding:1.6rem;border-radius:16px}
+label{display:grid;gap:.35rem;font-weight:700;font-size:.95rem}
+input,select,textarea{font:400 1rem var(--body);padding:.75rem .8rem;border:2px solid #B9D3E6;border-radius:8px;color:var(--ink);background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--cyan);outline:none}
+.btn-wa{background:var(--navy);color:#fff;text-align:center}
+.btn-wa:hover{background:var(--cyan)}
+.info{display:grid;gap:1rem;align-content:start}
+.info p{opacity:.92}
+footer{background:#041a30;color:#9DB6CC;text-align:center;padding:1.4rem 0;font-size:.9rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#inicio"><i></i>SIO <small>Servicios Integrales Olmedo</small></a>
+    <button class="menu-btn" id="mb" aria-expanded="false" aria-controls="nav">Menú</button>
+    <nav id="nav" aria-label="Principal">
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a href="#nosotros">Por qué SIO</a></li>
+        <li><a href="#contacto">Cotizar</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="stroke" aria-hidden="true"></div>
+  <div class="wrap in">
+    <h1>Tu casa, como nueva.</h1>
+    <p class="lead">Pintura, reparaciones y mantenimiento del hogar en un solo servicio.</p>
+    <div class="cta">
+      <a class="btn btn-main" href="#contacto">Pedir cotización gratis</a>
+      <a class="btn btn-line" href="#servicios">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="head">
+      <h2>Servicios para tu hogar</h2>
+      <p>Un solo contacto para pintar, arreglar y mantener tu casa o local.</p>
+    </div>
+    <div class="services">
+      <article class="svc">
+        <h3>Pintura</h3>
+        <p>Paredes, techos, fachadas y rejas, con buena preparación de la superficie.</p>
+        <ul><li>Interiores y exteriores</li><li>Resanes y sellado</li><li>Impermeabilizante</li></ul>
+      </article>
+      <article class="svc">
+        <h3>Reparaciones</h3>
+        <p>Arreglamos lo que se dañó antes de que se haga más grande.</p>
+        <ul><li>Humedad y filtraciones</li><li>Puertas, cerraduras y ventanas</li><li>Gypsum y enlucidos</li></ul>
+      </article>
+      <article class="svc">
+        <h3>Mantenimiento</h3>
+        <p>Revisión periódica para que tu hogar se mantenga en buen estado.</p>
+        <ul><li>Instalaciones básicas</li><li>Revisión de techos y canales</li><li>Planes mensuales o anuales</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="proceso">
+  <div class="wrap">
+    <div class="head"><h2>Cómo trabajamos</h2></div>
+    <ol class="steps">
+      <li><b>Nos escribes</b>Cuéntanos qué necesitas por WhatsApp o con el formulario.</li>
+      <li><b>Visitamos y medimos</b>Revisamos el lugar y definimos el trabajo contigo.</li>
+      <li><b>Te damos el precio</b>Cotización clara, con materiales y mano de obra.</li>
+      <li><b>Hacemos el trabajo</b>Entregamos limpio y en la fecha acordada.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="wrap why">
+    <div class="head">
+      <h2>Por qué elegir SIO</h2>
+      <p>Somos un servicio local: cuando algo falla, sabes a quién llamar.</p>
+    </div>
+    <dl>
+      <div><dt>Un solo responsable</dt><dd>No coordinas a tres personas distintas para un mismo arreglo.</dd></div>
+      <div><dt>Precio claro</dt><dd>Sabes cuánto cuesta antes de empezar.</dd></div>
+      <div><dt>Trabajo limpio</dt><dd>Protegemos muebles y pisos, y dejamos todo ordenado.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap cgrid">
+    <div class="info">
+      <h2>Pide tu cotización</h2>
+      <p>Llena el formulario y se abre WhatsApp con tu mensaje listo para enviar.</p>
+      <p><b>WhatsApp:</b> +593 9X XXX XXXX<br><b>Horario:</b> Lunes a sábado, 8:00 a 18:00<br><b>Zona:</b> Tu ciudad y alrededores</p>
+    </div>
+    <form id="f">
+      <label>Nombre<input name="n" required autocomplete="name"></label>
+      <label>Servicio
+        <select name="s">
+          <option>Pintura</option><option>Reparaciones</option><option>Mantenimiento del hogar</option><option>Otro</option>
+        </select>
+      </label>
+      <label>¿Qué necesitas?<textarea name="m" rows="3" required></textarea></label>
+      <button class="btn btn-wa" type="submit">Enviar por WhatsApp</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© SIO · Servicios Integrales Olmedo · Pintura, reparaciones y mantenimiento del hogar</div></footer>
+
+<script>
+var mb=document.getElementById('mb'),nav=document.getElementById('nav');
+mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();var d=new FormData(e.target);
+  var t='Hola SIO, soy '+d.get('n')+'. Necesito: '+d.get('s')+'. '+d.get('m');
+  window.open('https://wa.me/593900000000?text='+encodeURIComponent(t),'_blank');
+});
+</script>
+</body>
+</html>
